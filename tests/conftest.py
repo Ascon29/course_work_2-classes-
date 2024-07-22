@@ -10,6 +10,11 @@ def product():
 
 
 @pytest.fixture
+def product_1():
+    return {"name": "LG", "description": "4K", "price": 30000, "quantity": 4}
+
+
+@pytest.fixture
 def category_1():
     return Category(
         name="Смартфоны",

@@ -30,3 +30,9 @@ class Product:
                 self.__price = new_price
         elif new_price > self.__price:
             self.__price = new_price
+
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        return (self.price * self.quantity) + (other.price * other.quantity)

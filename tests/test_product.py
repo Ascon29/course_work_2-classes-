@@ -23,3 +23,11 @@ def test_price(capsys, product):
 
     product.price = 30000
     assert product.price == 30000
+
+
+def test__str__(product):
+    assert str(product) == "Samsung, 25000 руб. Остаток: 1 шт."
+
+
+def test__add__(product__add__, product2__add__):
+    assert product__add__ + product2__add__ == 200000

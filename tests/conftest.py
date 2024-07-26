@@ -37,3 +37,13 @@ def category_2():
             Product(name="Philips", description="Подсветка", price=60000, quantity=2),
         ],
     )
+
+
+@pytest.fixture
+def product__add__():
+    return Product(name="Samsung", description="256Gb", price=25000, quantity=2)
+
+
+@pytest.fixture
+def product2__add__():
+    return Product(name="Xiaomi", description="512Gb", price=30000, quantity=5)

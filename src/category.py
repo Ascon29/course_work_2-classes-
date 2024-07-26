@@ -31,3 +31,9 @@ class Category:
     @property
     def products_list(self):
         return self.__products
+
+    def __str__(self):
+        count = 0
+        for product in self.products_list:
+            count += product.quantity
+        return f"{self.name}, количество продуктов: {count} шт."

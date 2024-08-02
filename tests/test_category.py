@@ -1,3 +1,6 @@
+import pytest
+
+
 def test_category(category_1, category_2):
     assert category_1.name == "Смартфоны"
     assert category_1.description == "Смартфоны, как средство"
@@ -30,3 +33,8 @@ def test_add_product(category_1, product):
 
 def test__str__(category_1):
     assert str(category_1) == "Смартфоны, количество продуктов: 6 шт."
+
+
+def test_add_pruduct_not_class(category_1, product_not_class_object):
+    with pytest.raises(TypeError):
+        category_1.add_product(product_not_class_object)

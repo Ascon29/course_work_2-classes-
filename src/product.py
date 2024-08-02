@@ -1,4 +1,27 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class MixinLog:
+    """Класс-миксин, который печататает в консоль информацию о том,
+    от какого класса и с какими параметрами был создан объект"""
+
+    def __init__(self):
+        self.__repr__()
+
+    def __repr__(self):
+        print(f"{self.__class__.__name__}({self.name}, {self.description}, {self.price}, {self.quantity})")
+
+
+class BaseProduct(ABC):
+    """Базовый абстрактный родительский класс для класса продуктов"""
+
+    @classmethod
+    @abstractmethod
+    def new_product(cls, kwargs):
+        pass
+
+
+class Product(MixinLog, BaseProduct):
     """класс для категорий продуктов"""
 
     name: str
@@ -11,6 +34,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, kwargs):
@@ -42,6 +66,7 @@ class Product:
 
 
 class Smartphone(Product):
+    """Класс для категорий смартфонов"""
 
     def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
         super().__init__(name, description, price, quantity)
@@ -52,9 +77,21 @@ class Smartphone(Product):
 
 
 class LawnGrass(Product):
+    """Класс для категорий травы"""
 
     def __init__(self, name, description, price, quantity, country, germination_period, color):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
+
+if __name__ == "__main__":
+    y = LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+    print(y)
+    x = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
+    print(x)
+    z = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
+    print(z)
+
+    print(Product.__mro__)

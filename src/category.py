@@ -1,8 +1,21 @@
-from src.product import Product
+from abc import ABC
+
+from src.product import Product, abstractmethod
 
 
-class Category:
-    """класс для продуктов"""
+class BaseCategory(ABC):
+
+    @abstractmethod
+    def products(self):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+
+class Category(BaseCategory):
+    """Класс для продуктов"""
 
     name: str
     description: str
@@ -40,3 +53,15 @@ class Category:
         for product in self.products_list:
             count += product.quantity
         return f"{self.name}, количество продуктов: {count} шт."
+
+    def middle_price(self):
+        total_price = 0
+        total_quantity = 0
+        try:
+            for product in self.products_list:
+                total_price += product.price * product.quantity
+                total_quantity += product.quantity
+            avg_price = total_price / total_quantity
+        except ZeroDivisionError:
+            avg_price = 0
+        return round(avg_price, 1)

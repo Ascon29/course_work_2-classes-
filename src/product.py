@@ -22,7 +22,7 @@ class BaseProduct(ABC):
 
 
 class Product(MixinLog, BaseProduct):
-    """класс для категорий продуктов"""
+    """Класс для категорий продуктов"""
 
     name: str
     description: str
@@ -35,6 +35,8 @@ class Product(MixinLog, BaseProduct):
         self.__price = price
         self.quantity = quantity
         super().__init__()
+        if self.quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
 
     @classmethod
     def new_product(cls, kwargs):

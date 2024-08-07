@@ -10,6 +10,11 @@ def test_product(product):
     assert product.quantity == 1
 
 
+def test_product_0():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product(name="Samsung", description="256Gb", price=25000, quantity=0)
+
+
 def test_new_product(product_1):
     new = Product.new_product(product_1)
     assert new.name == "LG"

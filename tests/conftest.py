@@ -15,13 +15,18 @@ def product_1():
 
 
 @pytest.fixture
+def category_empty():
+    return Category("Пустая категория", "Категория без продуктов", [])
+
+
+@pytest.fixture
 def category_1():
     return Category(
         name="Смартфоны",
         description="Смартфоны, как средство",
         products=[
             Product(name="Samsung", description="256Gb", price=25000, quantity=1),
-            Product(name="Xiaomi", description="512Gb", price=30000, quantity=0),
+            Product(name="Xiaomi", description="512Gb", price=30000, quantity=2),
             Product(name="Iphone", description="256Gb", price=50000, quantity=5),
         ],
     )

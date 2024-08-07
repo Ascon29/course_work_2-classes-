@@ -20,7 +20,7 @@ def test_category(category_1, category_2):
 def test_products_list_property(category_1):
     assert category_1.products == (
         "Samsung, 25000 руб. Остаток: 1 шт.\n"
-        "Xiaomi, 30000 руб. Остаток: 0 шт.\n"
+        "Xiaomi, 30000 руб. Остаток: 2 шт.\n"
         "Iphone, 50000 руб. Остаток: 5 шт.\n"
     )
 
@@ -32,9 +32,17 @@ def test_add_product(category_1, product):
 
 
 def test__str__(category_1):
-    assert str(category_1) == "Смартфоны, количество продуктов: 6 шт."
+    assert str(category_1) == "Смартфоны, количество продуктов: 8 шт."
 
 
 def test_add_pruduct_not_class(category_1, product_not_class_object):
     with pytest.raises(TypeError):
         category_1.add_product(product_not_class_object)
+
+
+def test_middle_price(category_1):
+    assert category_1.middle_price() == 41875
+
+
+def test_middle_price_empty(category_empty):
+    assert category_empty.middle_price() == 0

@@ -3,7 +3,7 @@ from src.product import Product
 
 
 class ProductIterator:
-    """вспомогательный класс для итерации по продуктам в категории"""
+    """Вспомогательный класс для итерации по продуктам в категории"""
 
     def __init__(self, category_obj):
         self.category_obj = category_obj

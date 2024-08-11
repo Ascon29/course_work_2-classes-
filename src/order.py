@@ -1,16 +1,26 @@
 from src.category import BaseCategory
 from src.product import Product
+from src.exceptions import ZeroProductQuantity
 
 
 class Order(BaseCategory):
-
+    """ Класс для добавления продуктов в заказ """
     product: Product
     quantity: int
 
     def __init__(self, product: Product, quantity: int):
         self.__product = product
-        self.__quantity = quantity
         self.__total_price = 0
+        try:
+            if quantity == 0:
+                raise ZeroProductQuantity
+        except ZeroProductQuantity as e:
+            print(e)
+        else:
+            self.__quantity = quantity
+            print('Товар успешно добавлен в заказ')
+        finally:
+            print('Обработка добавления товара в заказ закончена')
 
     @property
     def products(self):
@@ -36,3 +46,5 @@ if __name__ == "__main__":
     print(order1.quantity)
     print(order1.total_price)
     print(str(order1))
+
+    order2 = Order(product1, 0)

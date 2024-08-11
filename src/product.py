@@ -33,10 +33,11 @@ class Product(MixinLog, BaseProduct):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
-        super().__init__()
-        if self.quantity == 0:
+        if quantity == 0:
             raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        else:
+            self.quantity = quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, kwargs):
